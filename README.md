@@ -14,8 +14,14 @@ yum install -y policycoreutils-python
 
 файервол отключен<br>
 <img src="./screenshots/2.png"/><img>
+
 конфигурация nginx настроена без ошибок<br>
 <img src="./screenshots/3.png"/><img>
+
+режим работы SELinux – Enforcing<br>
+<img src="./screenshots/4.png"/><img>
+
+
 
 
 
