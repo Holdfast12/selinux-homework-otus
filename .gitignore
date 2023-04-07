@@ -1,2 +1,3 @@
+.vagrant/
 nginx/.vagrant/
 dns_problems/.vagrant/
