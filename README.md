@@ -1,9 +1,21 @@
-Что нужно сделать?
+<p>Перед выполнением работы в Vagrantfile прописал смену времени на московское b установку policycoreutils-python:</p>
+
+```bash
+cp -f /usr/share/zoneinfo/Europe/Moscow /etc/localtime
+yum install -y policycoreutils-python
+
+```
+
+<h1 align="center">Запустить nginx на нестандартном порту 3-мя разными способами:</h1>
+
+<h2 align="left">Способ с переключателями setsebool</h2>
+<p>Во время развёртывания стенда попытка запустить nginx завершилась с ошибкой</p>
+<img src="./screenshots/1.png"/><img>
 
 
 
-1 Запустить nginx на нестандартном порту 3-мя разными способами:
-  переключатели setsebool;
+
+
   добавление нестандартного порта в имеющийся тип;
   формирование и установка модуля SELinux.
 
