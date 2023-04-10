@@ -1,4 +1,4 @@
-<h1 align="center">Обеспечить работоспособность приложения при включенном selinux</h1>
+<h1 align="center">Обеспечение работоспособности приложения при включенном SELinux</h1>
 
 <h2 align="left">Способ с переключателями setsebool</h2>
 <p>
@@ -8,21 +8,45 @@
 echo > /var/log/audit/audit.log
 
 <img src="./screenshots/2.png"/><img>
-Во время развёртывания стенда попытка запустить nginx завершилась с ошибкой<br>
+На клиентской машине попробуем внести изменения в зону:<br>
+
+```bash
+nsupdate -k /etc/named.zonetransfer.key
+```
+
 <img src="./screenshots/1.png"/><img>
 
+Изменения внести не получилось.<br>
+
+Смотрим логи SELinux, чтобы понять в чем может быть проблема.<br>
+
+```bash
 cat /var/log/audit/audit.log | audit2why
-Ошибок на клиенте нет
+```
+
+Ошибок на клиенте нет.<br>
+
 <img src="./screenshots/3.png"/><img>
 
 Не закрывая сессию на клиенте, подключаюсь к серверу ns01
 проверяю лог там
 
+
+```bash
+cat /var/log/audit/audit.log | audit2why
+```
+
 <img src="./screenshots/4.png"/><img>
 
+В логах мы видим, что ошибка в контексте безопасности.<br>
+Вместо типа named_t используется тип etc_t.<br>
 
-проверим данную проблему в каталоге /etc/named
+проверим данную проблему в каталоге /etc/named<br>
+
+```bash
 ls -Z /etc/named
+```
+
 <img src="./screenshots/5.png"/><img>
 
 посмотреть каталоги с подходящими политиками
